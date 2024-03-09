@@ -9,10 +9,17 @@ require dirname(__FILE__) . '/cls/router.php';
 if (isset($_GET["action"])) {
 	$action = $_GET["action"];
 	$fichier = redirect($action);
+} elseif (isset($_GET["table"])) {
+	$table = $_GET["table"];
+	$fichier = tableRedirect($table);
+
+	$fichier = 'admin/ReadCtrl.php';
 } else {
+
 	$fichier = 'accueil.controller.php';
 }
 
 require RACINE . "/controleur/" . $fichier;
 
-?>
+
+
