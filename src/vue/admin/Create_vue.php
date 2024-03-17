@@ -2,7 +2,7 @@
 ob_start();
 
 require_once "modele/FilmBD.php";
-require_once "modele/StreamBD.php"; // Assuming you have a StreamBD class
+require_once "modele/StreamBD.php"; 
 
 $table = isset($_GET['table']) ? $_GET['table'] : (isset($_POST['table']) ? $_POST['table'] : 'stream');
 
@@ -21,7 +21,7 @@ switch ($table) {
                 FilmBD::addFilm($table, $titre, $desc, $droit, $date, $duree, $affiche, $etat);
 
                 // Redirect to the current page with the success parameter
-                header('Location: ' . '?table=film&success=1');
+                header('Location: ' . $_SERVER['PHP_SELF'] . '?table=film&success=1');
                 exit();
             } catch (PDOException $e) {
                 $errorMessage = $e->getMessage();
@@ -38,8 +38,7 @@ switch ($table) {
 
             try {
                 StreamBD::addStream($id_film, $id_adherent, $date_expiration, $date_achat);
-                 header('Location: ' .'?table=stream&success=1');
-                exit();
+                header('Location: ' . '?table=stream&success=1');
             } catch (PDOException $e) {
                 $errorMessage = $e->getMessage();
             }
@@ -47,7 +46,7 @@ switch ($table) {
         break;
 
     default:
-        
+        $errorMessage = "Invalid table specified.";
         break;
 }
 
@@ -116,10 +115,10 @@ ob_end_flush();
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
     </div>
-<?php break;
+            <?php break;
             case 'stream': ?>
 
-    <!-- From Stream -->
+    <!-- Form Stream -->
     <form method="POST">
         <div class="form-group">
             <label for="id_film">id_film</label>
@@ -127,7 +126,7 @@ ob_end_flush();
         </div>
         <div class="form-group">
             <label for="id_adherent">id_adherent</label>
-            <textarea class="form-control" id="id_adherent" name="id_adherent" rows="3" required></textarea>
+            <input type="text" class="form-control" id="id_adherent" name="id_adherent" required>
         </div>
         <div class="form-group">
             <label for="date_expiration">date_expiration</label>
@@ -139,7 +138,7 @@ ob_end_flush();
             <label for="date_achat">date_achat</label>
             <input type="number" class="form-control" id="date_achat" name="date_achat" required>
         </div>
-       
+
 
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
