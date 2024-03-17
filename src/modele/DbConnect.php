@@ -2,7 +2,7 @@
 abstract class DbConnect {
 
 
-	protected static function connexion() {
+	 static function connexion() {
 		
 		try {
             $dsn = 'mysql:host=' . DB_HOST .';dbname=' . DB_DATABASE;

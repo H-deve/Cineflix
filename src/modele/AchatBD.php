@@ -4,7 +4,7 @@ require_once("./modele/DbConnect.php");
 
 class AchatBD extends DbConnect{
     private static $table = "achat";
-    public static function getStreams() : array {
+    public static function getAchats() : array {
         $db = self::connexion();
         $result = [];
 
@@ -19,7 +19,7 @@ class AchatBD extends DbConnect{
         return $result;
     }
 
-    public static function addStream($id_billet, $horaire_date, $date_d’achat , $nb_places_achetees,$id_adherent,$id_seance) : bool {
+    public static function addAchats($id_billet, $horaire_date, $date_d’achat , $nb_places_achetees,$id_adherent,$id_seance) : bool {
         $db = self::connexion();
 
         try {
@@ -33,11 +33,11 @@ class AchatBD extends DbConnect{
         }
     }
 
-    public static function deleteStream($id_billet) : bool {
+    public static function deleteAchats($id_billet) : bool {
         $db = self::connexion();
 
         try {
-            $query = $db->prepare("DELETE FROM " . self::$table . " WHERE id = ?");
+            $query = $db->prepare("DELETE FROM " . self::$table . " WHERE id_billet = ?");
             $query->execute([$id_billet]);
             return true;
         } catch (PDOException $e) {

@@ -16,6 +16,15 @@ function redirect($action)
 		case 'admin':
 			$fichier = "admin/ReadCtrl.php";
 			break;
+		case 'create':
+			$fichier = "admin/CreateCtrl.php";
+			break;
+		case 'update':
+			$fichier = "";
+			break;
+		case 'delete':
+			$fichier = "";
+			break;
 		default:
 			$fichier = "page404_ctl.php";
 			break;
@@ -28,15 +37,14 @@ function redirect($action)
 function tableRedirect($table)
 {
 	switch ($table) {
-		case 'film':
-			$fichier = "admin/ReadCtrl.php";
-			break;
-		case 'stream':
-			$fichier = "admin/ReadCtrl.php";
-			break;
 		case 'admin':
+		case 'film':
+		case 'stream':
+		case 'achat':
+		case'adherent':
 			$fichier = "admin/ReadCtrl.php";
 			break;
+
 		default:
 			$fichier = "page404_ctl.php";
 			break;

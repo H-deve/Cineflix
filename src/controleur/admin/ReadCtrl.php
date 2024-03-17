@@ -2,6 +2,13 @@
 
 require_once("./modele/FilmBD.php");
 require_once("./modele/StreamBD.php");
+require_once("./modele/AchatBD.php");
+// require_once("./modele/AdherentBD.php");
+// require_once("./modele/SalleBD.php");
+// require_once("./modele/SeanceBD.php");
+// require_once("./modele/TarifBD.php");
+// require_once("./modele/VilleBD.php");
+
 
 class ReadCtrl
 {
@@ -14,6 +21,15 @@ class ReadCtrl
     {
         return StreamBD::getStreams('stream');
     }
+    public function getAchat()
+    {
+        return AchatBD::getAchats('achat');
+    }
+    public function getAdherent()
+    {
+        return AdherentBD::getAdherents('adherent');
+    }
+    
 }
 
 $read = new ReadCtrl();
@@ -27,6 +43,12 @@ switch ($table) {
     case 'stream':
         $data = $read->getStream();
         break;
+    case 'achat':
+        $data = $read->getAchat();
+        break;
+    case 'adherent':
+        $data = $read->getAdherent();
+        break;
     default:
         $data = $read->getFilm();
         break;
@@ -34,4 +56,3 @@ switch ($table) {
 
 
 include("vue/admin/Crud_vue.php");
-?>
