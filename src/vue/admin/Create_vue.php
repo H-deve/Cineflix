@@ -139,10 +139,7 @@ ob_end_flush();
             <label for="date_achat">date_achat</label>
             <input type="number" class="form-control" id="date_achat" name="date_achat" required>
         </div>
-        <div class="form-group">
-            <label for="date_e2">Date dExpiration</label>
-            <input type="date" class="form-control" id="date_e2" name="date_e" required>
-        </div>
+       
 
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
