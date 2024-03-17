@@ -38,7 +38,7 @@ switch ($table) {
 
             try {
                 StreamBD::addStream($id_film, $id_adherent, $date_expiration, $date_achat);
-                 header('Location: ' .$_SERVER['PHP_SELF'] .'?table=stream&success=1');
+                 header('Location: ' .'?table=stream&success=1');
                 exit();
             } catch (PDOException $e) {
                 $errorMessage = $e->getMessage();
@@ -131,7 +131,7 @@ ob_end_flush();
         </div>
         <div class="form-group">
             <label for="date_expiration">date_expiration</label>
-            <input type="text" class="form-control" id="date_expiration" name="date_expiration" required>
+            <input type="date" class="form-control" id="date_expiration" name="date_expiration" required>
         </div>
 
 
