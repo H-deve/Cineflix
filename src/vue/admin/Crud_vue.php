@@ -109,7 +109,6 @@
                         <?php foreach ($data as $item) : ?>
                             <tr>
                                 <?php
-                                // Switch statement to display table data based on the selected table
                                 switch ($table) {
                                     case 'film':
                                         echo '

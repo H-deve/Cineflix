@@ -4,7 +4,7 @@ ob_start();
 require_once "modele/FilmBD.php";
 require_once "modele/StreamBD.php"; 
 
-$table = isset($_GET['table']) ? $_GET['table'] : (isset($_POST['table']) ? $_POST['table'] : 'stream');
+$table = isset($_GET['table']) ? $_GET['table'] : (isset($_POST['table']) ? $_POST['table'] : 'table');
 
 switch ($table) {
     case 'film':
@@ -20,7 +20,6 @@ switch ($table) {
             try {
                 FilmBD::addFilm($table, $titre, $desc, $droit, $date, $duree, $affiche, $etat);
 
-                // Redirect to the current page with the success parameter
                 header('Location: ' . $_SERVER['PHP_SELF'] . '?table=film&success=1');
                 exit();
             } catch (PDOException $e) {
@@ -81,6 +80,7 @@ ob_end_flush();
             case 'film':
         ?>
                 <form method="POST">
+                    <input type="hidden" name="table" value="film"> 
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title" required>
@@ -120,6 +120,7 @@ ob_end_flush();
 
     <!-- Form Stream -->
     <form method="POST">
+        <input type="hidden" name="table" value="stream"> 
         <div class="form-group">
             <label for="id_film">id_film</label>
             <input type="text" class="form-control" id="id_film" name="id_film" required>
@@ -143,9 +144,7 @@ ob_end_flush();
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 <?php break;
-            default:
-                // Handle default case or add more cases for other tables
-                break;
+           
         endswitch; ?>
 </div>
 <!-- Bootstrap JS (optional) -->
